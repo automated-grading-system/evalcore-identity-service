@@ -1,0 +1,15 @@
+bin/
+obj/
+TestResults/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.rsuser
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+artifacts/
