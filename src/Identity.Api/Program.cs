@@ -77,8 +77,14 @@ builder.Services.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
 builder.Services.AddSingleton<IClock, SystemClock>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IInternalUserService, InternalUserService>();
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<IdentityDatabaseSeeder>();
+builder.Services.Configure<InternalServiceAuthenticationOptions>(options =>
+{
+    options.Token = builder.Configuration["INTERNAL_SERVICE_TOKEN"] ?? string.Empty;
+});
+builder.Services.AddSingleton<InternalServiceAuthenticator>();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
