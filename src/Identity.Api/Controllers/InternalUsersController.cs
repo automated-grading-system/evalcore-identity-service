@@ -41,7 +41,7 @@ public sealed class InternalUsersController : ControllerBase
 
         var result = await _userService.GetInternalUserAsync(userId, cancellationToken);
         return result.IsSuccess
-            ? Ok(result.Value)
+            ? Ok(ApiResponse<object>.Ok(result.Value!))
             : StatusCode(result.StatusCode, ApiResponse<object>.Fail(result.Error!));
     }
 }
